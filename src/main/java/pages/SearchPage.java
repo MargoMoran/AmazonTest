@@ -30,7 +30,7 @@ public class SearchPage {
         for (WebElement s : pricesList) {
             String priceString = s.getText().replaceAll( "[$A-Za-z,]", "");
             int price = Integer.parseInt(priceString);
-            if (price < 4000) {
+            if (price < 1600) {
                 pricesListInt.add(price);
             }
         }
