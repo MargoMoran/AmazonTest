@@ -25,15 +25,16 @@ public class SearchPage {
     }
 
     public List<Integer> getPrices2() {
-        List<Integer> price = new ArrayList<>();
-        List<String> stringList = getPrices();
-        for (String s : stringList) {
-            int prices = Integer.parseInt(s);
-            if (prices < 40) {
-                price.add(prices);
+        List<Integer> pricesListInt = new ArrayList<>();
+        List<WebElement> pricesList = driver.findElements(pricesLocator);
+        for (WebElement s : pricesList) {
+            String priceString = s.getText().replaceAll( "[$A-Za-z,]", "");
+            int price = Integer.parseInt(priceString);
+            if (price < 4000) {
+                pricesListInt.add(price);
             }
         }
-        return price;
+        return pricesListInt;
     }
 
     public int getSumPrices() {

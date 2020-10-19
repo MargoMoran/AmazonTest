@@ -37,7 +37,7 @@ public class SignUpTest extends BaseTest {
 
     @Test
     public void getLowPriceListTest() {
-        SearchPage searchPage = mainPage.searchAndSubmit("xiaomi mi 5");
+        SearchPage searchPage = mainPage.searchAndSubmit("asus rog zephyrus");
         System.out.println(searchPage.getPrices2());
     }
     @Test
