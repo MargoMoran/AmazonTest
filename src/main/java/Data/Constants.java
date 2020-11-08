@@ -1,6 +1,6 @@
-package Values;
+package Data;
 
-public class Constans {
+public class Constants {
     public enum SignUpValues {
         USER("TesterUser1", "testermail2@gmail.com", "test1234"),
         USER2("TesterMargo","testermargo0@gmail.com", "test1234");
@@ -25,6 +25,18 @@ public class Constans {
             this.userName = userName;
             this.email = email;
             this.password = password;
+        }
+    }
+
+    public enum SearchValue {
+        VALUE1("asus rog zephtrus"),
+        VALUE2("xiaomi mi band 5");
+
+        private String value;
+        public String getValue(){return this.value;}
+
+        SearchValue(String value){
+            this.value = value;
         }
     }
 }
