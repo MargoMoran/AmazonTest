@@ -19,9 +19,11 @@ public class SignUpPage extends BasePage {
     private By checkPasswordField = By.id("ap_password_check");
     private By createAccButton = By.id("continue");
 
+    int waitTime = 5;
+
     public void register(Constants.SignUpValues USER) {
         verifyThatHeaderIsCorrect(signUpPageHeader, "Create account");
-        putStringToField(loginField, USER.getUserName());
+        putStringToField(loginField, USER.getUserName(), waitTime);
         putStringToField(emailField, USER.getEmail());
         putStringToField(passwordField, USER.getPassword());
         putStringToField(checkPasswordField, USER.getPassword());

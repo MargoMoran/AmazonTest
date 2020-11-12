@@ -18,6 +18,7 @@ public class MainPage extends BasePage {
     By searchButton = By.cssSelector("#nav-search-submit-text > input:nth-child(1)");
 
     String urlString = "https://www.amazon.com/";
+    int waitTime = 5;
 
     public MainPage getPage() {
         getURL(urlString);
@@ -25,12 +26,12 @@ public class MainPage extends BasePage {
     }
 
     public void clickOnNavBar() {
-        clickOnElement(navBarAccountTab, 10);
+        clickOnElement(navBarAccountTab, waitTime);
     }
 
     public void searchAndSubmit(Constants.SearchValue VALUE1) {
-        putStringToField(searchField, VALUE1.getValue());
-        clickOnElement(searchButton, 5);
+        putStringToField(searchField, VALUE1.getValue(), waitTime);
+        clickOnElement(searchButton, waitTime);
     }
 
 

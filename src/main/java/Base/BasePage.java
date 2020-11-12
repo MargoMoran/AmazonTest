@@ -5,6 +5,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
@@ -21,32 +23,35 @@ public class BasePage {
         driver.get(urlString);
     }
 
-//    public void waitVisibilityOfElement(By element, int waitTime) {
-//        WebDriverWait wait = new WebDriverWait(driver, waitTime);
-//        wait.until(ExpectedConditions.visibilityOfElementLocated(element));
-//    }
-//
-//    public void waitVisibilityOfElement(WebElement element, int waitTime) throws NullPointerException {
-//        WebDriverWait wait = (new WebDriverWait(driver, waitTime));
-//        wait.until(ExpectedConditions.visibilityOf(element));
-//    }
+    public void waitVisibilityOfElement(By element, int waitTime) {
+        WebDriverWait wait = new WebDriverWait(driver, waitTime);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(element));
+    }
+
+    public void waitVisibilityOfElement(WebElement element, int waitTime) throws NullPointerException {
+        WebDriverWait wait = (new WebDriverWait(driver, waitTime));
+        wait.until(ExpectedConditions.visibilityOf(element));
+    }
 
     public void clickOnElement(WebElement element, int waitTime) throws TimeoutException {
-//        waitVisibilityOfElement(element, waitTime);
+        waitVisibilityOfElement(element, waitTime);
         element.click();
     }
 
     public void clickOnElement(By element, int waitTime) throws TimeoutException {
-//        waitVisibilityOfElement(element, waitTime);
+        waitVisibilityOfElement(element, waitTime);
         driver.findElement(element).click();
     }
     public void clickOnElement(By element) {
-//        waitVisibilityOfElement(element, waitTime);
         driver.findElement(element).click();
     }
 
     public void putStringToField(By element, String string) throws TimeoutException {
-//        waitVisibilityOfElement(element, waitTime);
+        driver.findElement(element).click();
+        driver.findElement(element).sendKeys(string);
+    }
+    public void putStringToField(By element, String string, int waitTime) throws TimeoutException {
+        waitVisibilityOfElement(element, waitTime);
         driver.findElement(element).click();
         driver.findElement(element).sendKeys(string);
     }

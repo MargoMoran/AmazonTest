@@ -20,11 +20,13 @@ public class SignInPage extends BasePage {
     By signInSubmitButton = By.xpath("//input[@id='signInSubmit']");
     By createAccountSubmitButton = By.id("createAccountSubmit");
 
+    int waitTime = 5;
+
     public void signInFlow(Constants.SignUpValues USER2) {
         verifyThatHeaderIsCorrect(signInPageHeader, "Sign-In");
-        putStringToField(emailField, USER2.getEmail());
+        putStringToField(emailField, USER2.getEmail(), waitTime);
         clickOnElement(continueButton);
-        putStringToField(passwordField, USER2.getPassword());
+        putStringToField(passwordField, USER2.getPassword(), waitTime);
         clickOnElement(signInSubmitButton);
     }
 
