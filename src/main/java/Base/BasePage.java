@@ -69,6 +69,20 @@ public class BasePage {
         Assert.assertEquals(headerText, expectedText);
     }
 
+    public void verifyThatElementIsCorrect(By locatorOfElement, String expectedText){
+        String elementText = driver.findElement(locatorOfElement).getText();
+        Assert.assertEquals(expectedText, elementText);
+    }
+    public void verifyThatTextIsCorrect(String expectedText, By locatorOfElement){
+        String elementText = driver.findElement(locatorOfElement).getText().replaceAll("\"","");
+        Assert.assertEquals(expectedText, elementText);
+    }
+
+    public void verifyThatElementIsPresent(By locatorOfElement){
+        WebElement element = driver.findElement(locatorOfElement);
+        Assert.assertTrue(element.isDisplayed());
+    }
+
     public String getPageHeaderText(By locatorOfHeader) {
         return driver.findElement(locatorOfHeader).getText();
     }

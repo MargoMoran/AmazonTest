@@ -7,7 +7,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.util.concurrent.TimeUnit;
 
-public class BaseTest  {
+public class BaseTest {
     private static WebDriver driver;
     private static ThreadLocal<WebDriver> WEBDRIVER = new ThreadLocal<WebDriver>();
 
@@ -26,7 +26,6 @@ public class BaseTest  {
     public static WebDriver getDriver() {
         return WEBDRIVER.get();
     }
-
 
     @After
     public void tearDown() {

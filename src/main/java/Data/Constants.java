@@ -2,8 +2,9 @@ package Data;
 
 public class Constants {
     public enum SignUpValues {
-        USER("TesterUser1", "testermail2@gmail.com", "test1234"),
-        USER2("TesterMargo","testermargo0@gmail.com", "test1234");
+        USER1("TesterUser1", "testermail2@gmail.com", "test1234"),
+        USER2("TesterMargo","testermargo0@gmail.com", "test1234"),
+        USER3("TesterMargo","testermargo1@gmail.com", "test1234+");
 
         private String userName;
         private String email;
@@ -30,13 +31,19 @@ public class Constants {
 
     public enum SearchValue {
         VALUE1("asus rog zephtrus"),
-        VALUE2("xiaomi mi band 5");
+        VALUE2("xiaomi mi band 5"),
+        VALUE_OF_NUMBER(40);
 
         private String value;
+        private int valueOfNumber;
         public String getValue(){return this.value;}
 
         SearchValue(String value){
             this.value = value;
         }
+        SearchValue( int valueOfNumber){
+            this.valueOfNumber = valueOfNumber;
+        }
+
     }
 }

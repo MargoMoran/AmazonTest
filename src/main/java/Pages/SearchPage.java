@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static Data.Constants.SearchValue;
+import static Data.Constants.SearchValue.VALUE2;
+
 public class SearchPage extends BasePage {
     private WebDriver driver;
 
@@ -17,25 +20,29 @@ public class SearchPage extends BasePage {
     }
 
     private By pricesLocator = By.xpath("//span[@class=\"a-price-whole\"]");
+    private By spanWithResultsFor = By.xpath("//*[@class=\"a-color-state a-text-bold\"]");
 
-    public List<String> getPricesList() {
+    public SearchPage getPricesList() {
         List<WebElement> prices = getElementList(pricesLocator);
-        return prices.stream().map(WebElement::getText).collect(Collectors.toList());
+        List<String> q = prices.stream().map(WebElement::getText).collect(Collectors.toList());
+        verifyThatTextIsCorrect(VALUE2.getValue(), spanWithResultsFor);
+        return new SearchPage(driver);
     }
 
-    public List<Integer> getPricesListUnderNumber(int number) {
+    public List<Integer> getPricesListUnderNumber(SearchValue VALUE_OF_NUMBER) {
         List<Integer> pricesListInt = new ArrayList<>();
         List<WebElement> pricesList = getElementList(pricesLocator);
         for (WebElement s : pricesList) {
             int price = Integer.parseInt(getOnlyTextOfElement(s));
-            if (price < number) {
+            if (price < VALUE_OF_NUMBER.hashCode()) {
                 pricesListInt.add(price);
             }
         }
         return pricesListInt;
     }
 
-    public int getSumPrices(int number) {
-        return getPricesListUnderNumber(number).stream().reduce(0, Integer::sum);
+    public int getSumPrices(SearchValue VALUE_OF_NUMBER) {
+        return getPricesListUnderNumber(VALUE_OF_NUMBER).stream().reduce(0, Integer::sum);
     }
+
 }

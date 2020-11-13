@@ -16,6 +16,7 @@ public class MainPage extends BasePage {
     By startHereButton = By.id("nav-flyout-ya-newCust");
     By searchField = By.id("twotabsearchtextbox");
     By searchButton = By.cssSelector("#nav-search-submit-text > input:nth-child(1)");
+    By mainLogo = By.id("nav-logo");
 
     String urlString = "https://www.amazon.com/";
     int waitTime = 5;
@@ -25,13 +26,15 @@ public class MainPage extends BasePage {
         return this;
     }
 
-    public void clickOnNavBar() {
+    public SignInPage clickOnNavBar() {
         clickOnElement(navBarAccountTab, waitTime);
+        return new SignInPage(driver);
     }
 
-    public void searchAndSubmit(Constants.SearchValue VALUE1) {
+    public SearchPage searchAndSubmit(Constants.SearchValue VALUE1) {
         putStringToField(searchField, VALUE1.getValue(), waitTime);
         clickOnElement(searchButton, waitTime);
+        return new SearchPage(driver);
     }
 
 

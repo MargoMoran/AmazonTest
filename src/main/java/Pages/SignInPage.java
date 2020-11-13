@@ -19,19 +19,34 @@ public class SignInPage extends BasePage {
     By continueButton = By.xpath("//input[@id='continue']");
     By signInSubmitButton = By.xpath("//input[@id='signInSubmit']");
     By createAccountSubmitButton = By.id("createAccountSubmit");
+    By emailFieldAsText = By.xpath("//span[contains(text(),'@')]");
+    By alertMessage = By.xpath("//*[@class='a-alert-heading']");
+    By amazonLogo = By.xpath("//*[@class=\"a-icon a-icon-logo\"]");
+    By mainLogo = By.id("nav-logo");
 
     int waitTime = 5;
 
-    public void signInFlow(Constants.SignUpValues USER2) {
+    public SignInPage signInFlow(Constants.SignUpValues USER2) {
         verifyThatHeaderIsCorrect(signInPageHeader, "Sign-In");
         putStringToField(emailField, USER2.getEmail(), waitTime);
         clickOnElement(continueButton);
+        verifyThatElementIsCorrect(emailFieldAsText, USER2.getEmail());
         putStringToField(passwordField, USER2.getPassword(), waitTime);
         clickOnElement(signInSubmitButton);
+        waitVisibilityOfElement(alertMessage,waitTime);
+        verifyThatElementIsCorrect(alertMessage, "Important Message!");
+        return new SignInPage(driver);
     }
 
-    public void tapCreateAnAccButton() {
+    public SignUpPage tapCreateAnAccButton() {
         clickOnElement(createAccountSubmitButton, 10);
+        return new SignUpPage(driver);
+    }
+
+    public MainPage returnToMainPage(){
+        clickOnElement(amazonLogo);
+        verifyThatElementIsPresent(mainLogo);
+        return new MainPage(driver);
     }
 
 }
