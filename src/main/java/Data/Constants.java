@@ -30,9 +30,12 @@ public class Constants {
     }
 
     public enum SearchValue {
-        VALUE1("asus rog zephtrus"),
+        VALUE1("asus rog zephyrus"),
         VALUE2("xiaomi mi band 5"),
-        VALUE_OF_NUMBER(40);
+        VALUE3("iphone"),
+        VALUE_OF_NUMBER(40),
+        VALUE_OF_MAX_PRICE(100),
+        VALUE_OF_MIN_PRICE(50);
 
         private String value;
         private int valueOfNumber;

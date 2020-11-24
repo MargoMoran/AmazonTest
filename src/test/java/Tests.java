@@ -2,7 +2,6 @@ import Base.BaseTest;
 import Data.Constants;
 import Pages.MainPage;
 import Pages.SearchPage;
-import Pages.SignInPage;
 import org.junit.Test;
 
 import static Data.Constants.SearchValue.*;
@@ -22,7 +21,6 @@ public class Tests extends BaseTest {
     @Test
     public void signUpWithExistingUserTest() {
         MainPage mainPage = new MainPage(getDriver());
-        SignInPage signInPage = new SignInPage(getDriver());
 
         mainPage.clickOnNavBar()
                 .tapCreateAnAccButton()
@@ -30,12 +28,12 @@ public class Tests extends BaseTest {
     }
 
     @Test
-    public void fullSearchResultsTest() {
+    public void fullSearchResultsTest() throws InterruptedException {
         MainPage mainPage = new MainPage(getDriver());
         SearchPage searchPage = new SearchPage(getDriver());
 
-        mainPage.searchAndSubmit(VALUE1);
-        searchPage.getPricesList();
+        mainPage.searchAndSubmit(VALUE2);
+        searchPage.getPricesList(VALUE2);
         searchPage.getPricesListUnderNumber(VALUE_OF_NUMBER);
         searchPage.getSumPrices(VALUE_OF_NUMBER);
     }
@@ -48,7 +46,17 @@ public class Tests extends BaseTest {
                 .signInFlow(USER3)
                 .returnToMainPage()
                 .searchAndSubmit(VALUE2)
-                .getPricesList();
+                .getPricesList(VALUE2);
     }
 
+    @Test
+    public void checkAllCheckboxes() throws InterruptedException {
+        MainPage mainPage = new MainPage(getDriver());
+
+        mainPage.searchAndSubmit(VALUE3)
+                .checkManyCheckboxes()
+                .clearFilter()
+                .checkSingeCheckboxes();
+
+    }
 }

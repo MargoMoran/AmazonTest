@@ -1,6 +1,5 @@
 package Base;
 
-import org.junit.After;
 import org.junit.Before;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -17,7 +16,7 @@ public class BaseTest {
         System.setProperty("webdriver.chrome.driver", "C:\\Users\\Маргарита Житкевич\\IdeaProjects\\AmazonTest\\drivers\\chromedriver.exe");
 //        System.setProperty("webdriver.firefox.driver", "C:\\Users\\Маргарита Житкевич\\IdeaProjects\\AmazonTest\\drivers\\chromedriver.exe");
         driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.manage().window().maximize();
         WEBDRIVER.set(driver);
         driver.get("https://www.amazon.com/");
@@ -27,8 +26,8 @@ public class BaseTest {
         return WEBDRIVER.get();
     }
 
-    @After
-    public void tearDown() {
-        driver.quit();
-    }
+//    @After
+//    public void tearDown() {
+//        driver.quit();
+//    }
 }
