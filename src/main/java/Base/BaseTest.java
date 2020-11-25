@@ -1,5 +1,7 @@
 package Base;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.After;
 import org.junit.Before;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -13,7 +15,8 @@ public class BaseTest {
     @Before
     public void setUp() {
 
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\Маргарита Житкевич\\IdeaProjects\\AmazonTest\\drivers\\chromedriver.exe");
+        WebDriverManager.chromedriver().setup();
+
 //        System.setProperty("webdriver.firefox.driver", "C:\\Users\\Маргарита Житкевич\\IdeaProjects\\AmazonTest\\drivers\\chromedriver.exe");
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
@@ -26,8 +29,10 @@ public class BaseTest {
         return WEBDRIVER.get();
     }
 
-//    @After
-//    public void tearDown() {
-//        driver.quit();
-//    }
+    @After
+    public void tearDown() {
+        if (driver != null) {
+            driver.quit();
+        }
+    }
 }
