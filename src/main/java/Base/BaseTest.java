@@ -32,7 +32,9 @@ public class BaseTest {
     @After
     public void tearDown() {
         if (driver != null) {
+            driver.manage().deleteAllCookies();
             driver.quit();
+            WEBDRIVER.remove();
         }
     }
 }
